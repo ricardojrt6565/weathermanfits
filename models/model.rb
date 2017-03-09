@@ -7,7 +7,7 @@ url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.f
 uri = URI(url)
 response = Net::HTTP.get(uri)
 result = JSON.parse(response)
-  puts result
+ pp result["query"]["results"]["channel"]["ttl"]
   
-# Has to return temp num and unit
+# Say for example i'm trying to get the "humidity"
 

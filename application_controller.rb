@@ -9,5 +9,10 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
+post '/result' do
+  "Hello"
+end
   
 end
+
+
