@@ -19,7 +19,7 @@ attr_reader :city, :state
         @state = state
     end
     
-    def get_weather(city,state)
+    def get_weather
         begin
 response = Weather.lookup_by_location(@city,@state)
 response.title
@@ -27,15 +27,15 @@ response.title
     return "Sorry that's not a place"
     end
 end
-    def get_condition(city,state)
+    def get_condition
         begin
 response = Weather.lookup_by_location(@city,@state)
 response.condition.temp
         rescue
         return "Sorry that's a not a place"
-    end
+  end
    end 
-    def get_text(city,state)
+    def get_text
         begin
 response = Weather.lookup_by_location(@city,@state)
 response.condition.text
@@ -47,7 +47,7 @@ end
 
 # ak = App.new("Nome","Arkansas")
 
-# puts ak.get_weather("Nome","Arkansas")
-# puts ak.get_condition("Nome","Arkansas")
-# puts ak.get_text("Nome","Arkansas")
+# puts ak.get_weather
+# puts ak.get_condition
+# puts ak.get_text
 

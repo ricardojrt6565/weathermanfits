@@ -11,9 +11,9 @@ class ApplicationController < Sinatra::Base
   end
   post '/result' do
     
-   puts  @user_city  = params[:city]
-   puts  @user_state = params[:state]
-   @user_weather = App.new(@city,@state)
+     @user_city  = params[:city]
+     @user_state = params[:state]
+   @user_weather = App.new(@user_city,@user_state)
    
   erb :result
    
