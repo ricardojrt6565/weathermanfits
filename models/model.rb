@@ -13,40 +13,59 @@ require 'weather-api'
 # get the weather condition of any city/state
 
 class App
-attr_reader :city, :state
+    attr_reader :city, :state, :temp, :clothing
     def initialize(city,state)
         @city = city
         @state = state
+        get_weather
     end
     
     def get_weather
         begin
-response = Weather.lookup_by_location(@city,@state)
-response.title
+            response = Weather.lookup_by_location(@city,@state)
+            response.title
         rescue
-    return "Sorry that's not a place"
+            return "Sorry that's not a place"
+        end
     end
-end
+    
     def get_condition
         begin
-response = Weather.lookup_by_location(@city,@state)
-response.condition.temp
+            response = Weather.lookup_by_location(@city,@state)
+            @temp = (response.condition.temp)*(9/5)+32
+            
         rescue
-        return "Sorry that's a not a place"
-  end
-   end 
+            return ""
+        end
+    end 
+    
+    def get_clothing
+        begin
+            if @temp >= -10 && @temp <= 10
+                "You should wear jacket"
+            elsif @temp >=11 && @temp <= 40
+                "You need a thick sweater"
+            elsif @temp >= 41 && @temp<= 60
+                "layered shirts"
+            elsif @temp >= 61 && @temp <= 99
+                 "A tank top my guy"
+            end
+        rescue 
+            return ""
+        end
+    end
+    
     def get_text
         begin
-response = Weather.lookup_by_location(@city,@state)
-response.condition.text
+            response = Weather.lookup_by_location(@city,@state)
+            response.condition.text
         rescue
-       return "Sorry that's not a place"
+           return ""
+        end
     end
-end
 end
 
 # ak = App.new("Nome","Arkansas")
-
 # puts ak.get_weather
 # puts ak.get_condition
 # puts ak.get_text

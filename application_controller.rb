@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
     
      @user_city  = params[:city]
      @user_state = params[:state]
-   @user_weather = App.new(@user_city,@user_state)
+     @user_weather = App.new(@user_city,@user_state)
    
   erb :result
    
