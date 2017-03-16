@@ -9,10 +9,16 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
-post '/result' do
-  "Hello"
-end
-  
+  post '/result' do
+    
+   puts  @user_city  = params[:city]
+   puts  @user_state = params[:state]
+   @user_weather = App.new(@city,@state)
+   
+  erb :result
+   
+  end
+
 end
 
 
