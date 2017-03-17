@@ -9,6 +9,7 @@ class App
         @city = city
         @state = state
         get_weather
+        # to begin this app city and state are needed
     end
     
     def get_weather
@@ -19,14 +20,15 @@ class App
             return "Sorry that's not a place"
         end
     end
-    
+    # get_weather/condition/text all get different aspects of weather from city/state chosen 
     def get_condition
         begin
             response = Weather.lookup_by_location(@city,@state)
             @temp = (response.condition.temp)*(9/5)+32
-            
+            # this section converts the weather into Fahrenheit 
+            # instance temp was created in order to be able to create the get_clothing method
         rescue
-            return ""
+            return "Doesn't exist"
         end
     end 
     
@@ -41,11 +43,12 @@ class App
             elsif @temp >= 61 && @temp <= 99
                  "A tank top my guy"
             end
+            # compares weather numbers and gives back a recommended on what to wear
         rescue 
             return ""
         end
     end
-    
+    # Rescues are created so that if something goes wrong it has somewhere to turn and way of telling the user what's happening 
     def get_text
         begin
             response = Weather.lookup_by_location(@city,@state)
